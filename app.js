@@ -9,11 +9,19 @@ http
     if (request.url === "/") {
       var file = fs.createReadStream("index.html");
       file.pipe(response);
+      return;
     }
 
     if (request.url === "/about-me") {
       var file = fs.createReadStream("about-me.html");
       file.pipe(response);
+      return;
+    }
+
+    if (request.url === "/contact") {
+      var file = fs.createReadStream("contact.html");
+      file.pipe(response);
+      return;
     }
   })
   .listen(8080);
