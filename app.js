@@ -9,19 +9,15 @@ http
     if (request.url === "/") {
       var file = fs.createReadStream("index.html");
       file.pipe(response);
-      return;
-    }
-
-    if (request.url === "/about-me") {
+    } else if (request.url === "/about-me") {
       var file = fs.createReadStream("about-me.html");
       file.pipe(response);
-      return;
-    }
-
-    if (request.url === "/contact") {
+    } else if (request.url === "/contact") {
       var file = fs.createReadStream("contact.html");
       file.pipe(response);
-      return;
+    } else {
+      var file = fs.createReadStream("404.html");
+      file.pipe(response);
     }
   })
   .listen(8080);
