@@ -1,13 +1,16 @@
-const http = require("http");
+var fs = require("fs");
+var http = require("http");
 
-const port = process.env.PORT || 8080;
+http
+  .createServer(function (request, response) {
+    response.writeHead(200, { "Content-Type": "text/html" });
 
-const server = http.createServer((req, res) => {
-  res.statusCode = 200;
-  res.setHeader("Content-Type", "text/html");
-  res.end("<h1>Hello, World!</h1>");
-});
+    var file = fs.createReadStream("index.html");
+    file.pipe(response);
+  })
+  .listen(8080);
 
-server.listen(port, () => {
-  console.log(`Server running at port ${port}`);
-});
+console.log("listening on port 8080...");
+// server.listen(port, () => {
+//   console.log(`Server running at port ${port}`);
+// });
